@@ -49,7 +49,7 @@ const AddBudgetForm = () => {
           ) : (
             <>
               <span>Create Budget</span>
-              <CurrencyRupeeIcon />
+              <CurrencyRupeeIcon width = {20}/>
             </>
           )}
         </button>
