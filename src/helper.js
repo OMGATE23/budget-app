@@ -2,10 +2,6 @@ export function fetchData(key){
     return localStorage.getItem(key)
 }
 
-export function deleteItem({key}){
-    return localStorage.removeItem(key)
-}
-
 export function createNewBudget({name , amount}){
     const newItem = {
         id : crypto.randomUUID(),
@@ -18,6 +14,20 @@ export function createNewBudget({name , amount}){
     const existingBudgets = JSON.parse(fetchData('budgets')) ?? [];
     return localStorage.setItem("budgets",
     JSON.stringify([...existingBudgets, newItem]))
+}
+
+export function createNewExpense({name , amount , budgetId}){
+    const newItem = {
+        id : crypto.randomUUID(),
+        name : name,
+        createdAt : Date.now(),
+        amount : +amount,
+        budgetId
+    }
+
+    const existingExpenses = JSON.parse(fetchData('expenses')) ?? [];
+    return localStorage.setItem("expenses",
+    JSON.stringify([...existingExpenses, newItem]))
 }
 
 function generateRandomColor(){
